@@ -1,5 +1,6 @@
 package com.worldline.formation.gatling.service.controller;
 
+import com.worldline.formation.gatling.service.Sleep;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,12 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class SleepController {
 
     @RequestMapping("/sleep/{sleep}")
-    public String sleep(@PathVariable long sleep) {
+    public Sleep sleep(@PathVariable long sleep) {
         try {
             Thread.sleep(sleep);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        return "OK";
+        return new Sleep(sleep);
     }
 }
