@@ -2,14 +2,17 @@ package com.worldline.formation.gatling.service
 
 import java.util.Calendar
 
-import com.typesafe.config.{ConfigValue, ConfigFactory}
+import scala.collection.JavaConversions._
+import scala.util.Random
+
+import com.typesafe.config.ConfigValue
 import com.worldline.formation.gatling.service.sample.Feeders
+
 import io.gatling.core.Predef._
+import io.gatling.core.Predef.configuration
 import io.gatling.core.structure.Feeds
 import io.gatling.http.Predef._
-import scala.collection.JavaConversions._
-
-import scala.util.Random
+import io.gatling.http.Predef.http
 
 class FibonacciSimulation extends Simulation with CommonSimulation {
 
@@ -30,7 +33,7 @@ class FibonacciSimulation extends Simulation with CommonSimulation {
     .exec(http("Fibo n")
       .get("/fibo/${value1}")
       .check(status.is(200))
-      .check(bodyString.is(RawFileBody("FibonacciSimulation_0000_response.txt"))))
+      .check(bodyString.is(ElFileBody("FibonacciSimulation_0000_response.txt"))))
 
 
   //This is the setup

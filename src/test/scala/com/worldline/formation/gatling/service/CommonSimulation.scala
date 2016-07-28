@@ -1,7 +1,9 @@
 package com.worldline.formation.gatling.service
 
 import com.typesafe.config.ConfigFactory
-import io.gatling.http.Predef._
+
+import io.gatling.core.Predef.configuration
+import io.gatling.http.Predef.http
 
 /**
   * Created by a501768 on 08/06/2016.
