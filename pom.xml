@@ -77,7 +77,7 @@
             <plugin>
                 <groupId>io.gatling</groupId>
                 <artifactId>gatling-maven-plugin</artifactId>
-                <version>${gatling.version}</version>
+                <version>2.2.0</version>
                 <executions>
                     <execution>
                         <id>testExportCampaign</id>
