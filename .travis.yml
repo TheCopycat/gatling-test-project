@@ -1,0 +1,19 @@
+sudo: false
+
+cache:
+  directories:
+  - $HOME/.m2
+
+language: java
+
+jdk:
+  - oraclejdk8
+
+install: 
+  - mvn install 
+
+script: 
+  - mvn package 
+  # Tricks to avoid useless S3 cache updates
+  - mkdir /tmp/cache-trick
+  - mv $HOME/.m2/repository/net/hearthstats /tmp/cache-trick/
