@@ -33,7 +33,7 @@ class FibonacciSimulation extends Simulation with CommonSimulation {
     .exec(http("Fibo n")
       .get("/fibo/${value1}")
       .check(status.is(200))
-      .check(bodyBytes.is(RawFileBody("FibonacciSimulation_0000_response.txt"))))
+      .check(bodyString.is(ElFileBody("FibonacciSimulation_0000_response.txt"))))
 
 
   //This is the setup
