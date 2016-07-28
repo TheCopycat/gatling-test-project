@@ -1,2 +1,5 @@
 *.iml
 target/
+
+.cache-main
+.cache-tests
