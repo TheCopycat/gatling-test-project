@@ -16,4 +16,4 @@ script:
   - mvn package 
   # Tricks to avoid useless S3 cache updates
   - mkdir /tmp/cache-trick
-  - mv $HOME/.m2/repository/net/hearthstats /tmp/cache-trick/
+  - mv $HOME/.m2/repository/com/worldline /tmp/cache-trick/
