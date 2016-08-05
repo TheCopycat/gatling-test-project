@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 
 /**
@@ -16,7 +17,7 @@ import java.util.Map;
 @Repository
 public class UserRepository implements CrudRepository<User,String> {
 
-    private Map<String,User> users = new HashMap<>();
+    private Map<String,User> users = new ConcurrentHashMap<>();
 
     @Override
     public <S extends User> S save(S s) {
