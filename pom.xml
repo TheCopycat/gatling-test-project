@@ -9,7 +9,7 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
-        <!--<module>simulation</module>-->
+        <module>simulation</module>
         <module>tested-service</module>
     </modules>
 </project>
