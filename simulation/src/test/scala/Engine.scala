@@ -9,8 +9,8 @@ object Engine extends App {
 	props.bodiesDirectory(IDEPathHelper.bodiesDirectory.toString)
 	props.binariesDirectory(IDEPathHelper.mavenBinariesDirectory.toString)
 
-	//to select a simulation
-	//props.simulationClass(classOf[ExampleSimulation].getName)
+	//selects the simulation
+	props.simulationClass(classOf[ExampleSimulation].getName)
 
 	Gatling.fromMap(props.build)
 }
