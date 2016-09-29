@@ -86,7 +86,7 @@
                             <goal>execute</goal>
                         </goals>
                         <configuration>
-                            <simulationClass>com.worldline.formation.gatling.service.FibonacciSimulation</simulationClass>
+                            <simulationClass>com.worldline.formation.gatling.service.UserSimulation</simulationClass>
                         </configuration>
                     </execution>
                 </executions>

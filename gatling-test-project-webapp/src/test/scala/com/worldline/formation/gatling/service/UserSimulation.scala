@@ -24,12 +24,13 @@ class UserSimulation extends Simulation with CommonSimulation {
         .post("/users")
         .body(RawFileBody("user.json"))
         .header("Content-Type","application/json")
-        .check(jsonPath("$.id").saveAs("userId")))
+          .check(status.is(201))
+        .check(jsonPath("$.id").saveAs("userId")).check(header("location").saveAs("newLocation")))
 
-        .exec(http("getUser").get("/users/${userId}")
+        .exec(http("getUser").get("${newLocation}")
       .check(jsonPath("$.id").is("${userId}")))
 
-  setUp(scn.inject(constantUsersPerSec(1) during (1 seconds))).protocols(httpProtocol)
+  setUp(scn.inject(constantUsersPerSec(10) during (5 seconds))).protocols(httpProtocol)
 
 
 
