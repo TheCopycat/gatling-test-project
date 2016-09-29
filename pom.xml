@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.worldline.formation.gatling</groupId>
-    <artifactId>gatling-test-service-parent</artifactId>
+    <artifactId>gatling-test-project</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
-        <module>simulation</module>
-        <module>tested-service</module>
+        <module>gatling-test-project-simulation</module>
+        <module>gatling-test-project-webapp</module>
     </modules>
 </project>
