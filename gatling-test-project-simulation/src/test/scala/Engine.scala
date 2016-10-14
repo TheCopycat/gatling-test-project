@@ -1,6 +1,6 @@
 import io.gatling.app.Gatling
 import io.gatling.core.config.GatlingPropertiesBuilder
-import training.ExampleSimulation
+import training.SimplestSimulation
 
 object Engine extends App {
 
@@ -11,7 +11,7 @@ object Engine extends App {
 	props.binariesDirectory(IDEPathHelper.mavenBinariesDirectory.toString)
 
 	//selects the simulation
-	props.simulationClass(classOf[ExampleSimulation].getName)
+	props.simulationClass(classOf[SimplestSimulation].getName)
 
 	Gatling.fromMap(props.build)
 }
