@@ -12,18 +12,23 @@ class Exo1Scenario extends Simulation {
     .repeat(5)(
       //Go to main page
       exec(http("homepage").get("/shopping/main.xhtml"))
+      // Pause
+      .pause(2,3)
       // Go to category page
       .exec(http("category").get("/shopping/showproducts.xhtml?categoryName=Reptiles"))
         // Pause
-      .pause(2,3)
-      // Go to product page
-      .exec(http("product").get("/shopping/showitems.xhtml?productId=1011"))
-      // Pause
       .pause(1)
-      // Go to item page
-      .exec(http("item").get("/shopping/showitem.xhtml?itemId=1011"))
-      // Pause
-      .pause(1)
+        //repeat 3 times
+      .repeat(3)(
+        // Go to product page
+        exec(http("product").get("/shopping/showitems.xhtml?productId=1011"))
+        // Pause
+        .pause(1)
+        // Go to item page
+        .exec(http("item").get("/shopping/showitem.xhtml?itemId=1011"))
+        // Pause
+        .pause(1)
+      )
     )
 
   setUp(scn
