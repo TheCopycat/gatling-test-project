@@ -6,39 +6,33 @@ import scala.concurrent.duration._
 
 class Exo2Injection extends Simulation {
 
-  val user1 = """ { "firstName" : "John", "lastName"  : "Doe", "age" : "42" } """
-  val user2 = """ { "firstName" : "John", "lastName"  : "Doe", "age" : "42" } """
-  val user3 = """ { "firstName" : "John", "lastName"  : "Doe", "age" : "42" } """
-
-  val httpProtocol = http.baseURL("http://127.0.0.1:8080")
+  val httpProtocol = http.baseURL("http://oscobai064s.sys.meshcore.net:8000/petstoreee7-7.0")
 
   val scn = scenario("Exo1")
     // Repeat 5 times
     .repeat(5)(
-      //Go to homepage
-      exec(http("HomePage").get("/"))
-        // Add product1 to basket
-        .exec(http("user1").post("/users").body(StringBody(user1)).asJSON)
+      //Go to main page
+      exec(http("homepage").get("/shopping/main.xhtml"))
+      // Go to category page
+      .exec(http("category").get("/shopping/showproducts.xhtml?categoryName=Reptiles"))
         // Pause
-        .pause(2,3)
-        // Add product2 to basket
-        .exec(http("user2").post("/users").body(StringBody(user2)).asJSON)
-        // Pause
-        .pause(2,3)
-        // Add product3 to basket
-        .exec(http("user3").post("/users").body(StringBody(user3)).asJSON)
-        // Pause
-        .pause(2,3)
-        // Get Total
-        .exec(http("list").get("/users"))
+      .pause(2,3)
+      // Go to product page
+      .exec(http("product").get("/shopping/showitems.xhtml?productId=1011"))
+      // Pause
+      .pause(1)
+      // Go to item page
+      .exec(http("item").get("/shopping/showitem.xhtml?itemId=1011"))
+      // Pause
+      .pause(1)
     )
 
-  setUp(scn.inject(
-    atOnceUsers(1),
-    nothingFor(4 seconds),
-    rampUsers(10) over(10 seconds),
-    heavisideUsers(100) over(5 seconds)
-  )
+  setUp(scn
+    .inject(
+      atOnceUsers(1),
+      nothingFor(10.seconds),
+      rampUsers(10) over 10.seconds,
+      heavisideUsers(100) over 5.seconds)
     .protocols(httpProtocol)
   )
 }
