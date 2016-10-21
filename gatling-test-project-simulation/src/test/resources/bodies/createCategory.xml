@@ -1,0 +1,4 @@
+<category>
+    <name>${name}</name>
+    <description>${description}</description>
+</category>
