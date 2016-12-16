@@ -74,50 +74,7 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>io.gatling</groupId>
-                <artifactId>gatling-maven-plugin</artifactId>
-                <version>2.2.0</version>
-                <executions>
-                    <execution>
-                        <id>testExportCampaign</id>
-                        <phase>integration-test</phase>
-                        <goals>
-                            <goal>execute</goal>
-                        </goals>
-                        <configuration>
-                            <simulationClass>com.worldline.formation.gatling.service.UserSimulation</simulationClass>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
 
-            <plugin>
-                <groupId>org.eclipse.jetty</groupId>
-                <artifactId>jetty-maven-plugin</artifactId>
-                <version>9.3.0.M2</version>
-                <configuration>
-                    <stopPort>9966</stopPort>
-                    <stopKey>foo</stopKey>
-                    <stopWait>10</stopWait>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>before-test</id>
-                        <goals>
-                            <goal>start</goal>
-                        </goals>
-                        <phase>pre-integration-test</phase>
-                    </execution>
-                    <execution>
-                        <id>after-test</id>
-                        <goals>
-                            <goal>stop</goal>
-                        </goals>
-                        <phase>post-integration-test</phase>
-                    </execution>
-                </executions>
-            </plugin>
             <plugin>
                 <artifactId>maven-war-plugin</artifactId>
                 <version>2.5</version>
@@ -164,6 +121,66 @@
             <properties>
                 <env>dev</env>
             </properties>
+        </profile>
+        <profile>
+            <id>gatling</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>io.gatling</groupId>
+                        <artifactId>gatling-maven-plugin</artifactId>
+                        <version>2.2.0</version>
+                        <executions>
+                            <execution>
+                                <id>testUserSimulation</id>
+                                <phase>integration-test</phase>
+                                <goals>
+                                    <goal>execute</goal>
+                                </goals>
+                                <configuration>
+                                    <simulationClass>com.worldline.formation.gatling.service.UserSimulation</simulationClass>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>testFibonacci</id>
+                                <phase>integration-test</phase>
+                                <goals>
+                                    <goal>execute</goal>
+                                </goals>
+                                <configuration>
+                                    <simulationClass>com.worldline.formation.gatling.service.FibonacciSimulation</simulationClass>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.eclipse.jetty</groupId>
+                        <artifactId>jetty-maven-plugin</artifactId>
+                        <version>9.3.0.M2</version>
+                        <configuration>
+                            <stopPort>9966</stopPort>
+                            <stopKey>foo</stopKey>
+                            <stopWait>10</stopWait>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>before-test</id>
+                                <goals>
+                                    <goal>start</goal>
+                                </goals>
+                                <phase>pre-integration-test</phase>
+                            </execution>
+                            <execution>
+                                <id>after-test</id>
+                                <goals>
+                                    <goal>stop</goal>
+                                </goals>
+                                <phase>post-integration-test</phase>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
     </profiles>
 </project>
